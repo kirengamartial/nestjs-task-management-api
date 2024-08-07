@@ -1,0 +1,10 @@
+server:
+  port: 3000
+
+db:
+  type: ''
+  port: 5432
+  database: ''
+
+jwt:
+  expiresIn: 3600
