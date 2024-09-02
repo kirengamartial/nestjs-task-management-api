@@ -3,6 +3,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as config from 'config';
+import * as express from 'express';
 
 async function bootstrap() {
   const serverConfig = config.get('server');
@@ -26,6 +27,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
+  app.use('/uploads', express.static('uploads'));
   app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(port);
